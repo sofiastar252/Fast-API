@@ -1,0 +1,85 @@
+<!--  Sofia Starinnova -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sofia's Winter Wonderland Todo App</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <style>
+        body {
+            background: url('https://wallpapers.com/images/hd/beautiful-winter-k1ehvkzri2l9ug7a.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Comic Sans MS', 'Comic Sans', cursive;
+            color: #fff;
+        }
+        .ui.container {
+            margin-top: 50px;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .ui.header {
+            color: #00796b;
+        }
+        .ui.form .field label {
+            color: #00796b;
+        }
+        .ui.blue.button {
+            background-color: #00796b !important;
+            color: #fff !important;
+        }
+        .ui.segment {
+            background-color: rgba(224, 247, 250, 0.9) !important;
+            border-color: #b2ebf2 !important;
+        }
+        .ui.gray.label {
+            background-color: #b2ebf2 !important;
+            color: #00796b !important;
+        }
+        .ui.green.label {
+            background-color: #00796b !important;
+            color: #fff !important;
+        }
+        .ui.red.button {
+            background-color: #004d40 !important;
+            color: #fff !important;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <div class="ui container">
+        <h1 class="ui center aligned header">Sofia's Awesome Todo App</h1>
+
+        <form class="ui form" action="/add" method="post">
+            <div class="field">
+                <label>Todo Title</label>
+                <input type="text" name="title" placeholder="Enter Todo...">
+            </div>
+            <button class="ui blue button" type="submit">Add</button>
+        </form>
+
+        <hr>
+
+        {% for todo in todo_list %}
+        <div class="ui segment">
+            <p class="ui big header">{{ todo.id }} | {{ todo.title }}</p>
+
+            {% if not todo.complete %}
+            <span class="ui gray label">Not Complete</span>
+            {% else %}
+            <span class="ui green label">Completed</span>
+            {% endif %}
+
+            <a class="ui blue button" href="/update/{{ todo.id }}">Update</a>
+            <a class="ui red button" href="/delete/{{ todo.id }}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+
+</html>

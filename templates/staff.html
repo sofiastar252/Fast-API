@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="ui center aligned header">Staff</h1>
+
+    <!-- Add Staff Form -->
+    <form class="ui form" action="/add_staff" method="post">
+        <div class="field">
+            <label>Name</label>
+            <input type="text" name="name" placeholder="Enter Name...">
+        </div>
+        <button class="ui blue button" type="submit">Add Staff</button>
+    </form>
+
+    <hr>
+
+    <!-- List of Staff -->
+    <div class="ui segment">
+        <h2 class="ui header">Staff List</h2>
+        <ul>
+            {% for staff in staff_list %}
+            <li>{{ staff.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

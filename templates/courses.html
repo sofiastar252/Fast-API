@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1 class="ui center aligned header">Courses</h1>
+
+    <!-- Add Course Form -->
+    <form class="ui form" action="/add_course" method="post">
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="title" placeholder="Enter Title...">
+        </div>
+        <div class="field">
+            <label>Description</label>
+            <textarea name="description" placeholder="Enter Description..."></textarea>
+        </div>
+        <button class="ui blue button" type="submit">Add Course</button>
+    </form>
+
+    <hr>
+
+    <!-- List of Courses -->
+    <div class="ui segment">
+        <h2 class="ui header">Courses List</h2>
+        <ul>
+            {% for course in course_list %}
+            <li>{{ course.title }} - {{ course.description }} <a class="ui blue button" href="/update_course/{{ course.id }}">Update</a> <a class="ui red button" href="/delete_course/{{ course.id }}">Delete</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
